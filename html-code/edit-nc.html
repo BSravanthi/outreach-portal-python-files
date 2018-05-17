@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <h2>Edit Nodal Coordinator</h2>
+    <span class="error"> {{ status }}</span>
+    <form name="myForm" novalidate ng-submit="submit(user_id, nc_id)">
+      <p>Coordinator Name:<br>
+        <input type="text" name="user" ng-model="user"
+               ng-pattern="/^[a-zA-Z\s]*$/" class="form-control"  placeholder="Coordinator Name" required>
+	<span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+	  <span ng-show="myForm.user.$error.required">Username is
+	    required.</span>
+          <span ng-show="myForm.user.$error.pattern">Enter valid name</span>
+	</span>
+      </p>
+       <p ng-show="flag1">Nodal Centre Name:<br>
+        <input type="text" name="centre" ng-model="ncentre_name+','+ncentre" class="form-control" id="centre" readonly> <font color="blue" ng-click="change()">change</font>
+      </p>
+
+      <p ng-show="flag2">Nodal Centre Name:<br>
+         <select class="form-control" ng-model="ncentre_id" ng-options="centre as (centre.name + ',&nbsp; ' + centre.location) for centre in ncentres ">
+         </select><font color="blue" ng-click="donotchange()">don't change</font>
+      </p>
+
+      <p>Email:<br>
+	<input type="text" name="email" ng-model="email"
+               ng-pattern="/^[A-Za-z]+[A-Za-z0-9._-]+@[A-Za-z]+\.[A-Za-z.]{2,20}$/"
+               class="form-control"  placeholder="example@ex.com" required>
+	<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+	  <span ng-show="myForm.email.$error.required">Email is required.</span>
+	  <span ng-show="myForm.email.$error.pattern">Invalid email address.</span>
+	</span>
+      </p>
+      <!--
+      <p>Institute Name:<br>
+	<input type="text" name="inst_name" ng-model="inst_name"  class="form-control"  placeholder="Institute Name" required>
+	<span style="color:red" ng-show="myForm.inst_name.$dirty && myForm.inst_name.$invalid">
+	  <span ng-show="myForm.inst_name.$error.required">Institute name is required.</span>
+	</span>
+      </p>
+      <p>Phone No:<br>
+	<input type="number" name="phone"  ng-pattern="/^[(]{0,1}[0-9]{3}[)\.\-
+               ]{0,1}[0-9]{3}[\.\-
+               ]{0,1}[0-9]{4}$/"
+	       ng-model="phone" ng-minlength="10" ng-maxlength="10" class="form-control"
+	       placeholder="Mobile Number" required>
+	<span style="color:red" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+	  <span ng-show="myForm.phone.$error.required">Phone number is
+	    required.</span>
+          <span ng-show="myForm.phone.$error.minlength">Enter valid phone number</span>
+          <span ng-show="myForm.phone.$error.maxlength">Enter valid phone number</span>
+          <span ng-show="myForm.phone.$error.number">Phone number is required.</span>
+	</span>
+      </p>
+      -->
+      <p>Target Workshops<br>
+	<input type="number" name="workshops" min="0" ng-model="workshops"  class="form-control"
+               placeholder="No of workshops" required>
+	<span style="color:red" ng-show="myForm.workshops.$dirty && myForm.workshops.$invalid">
+	  <span ng-show="myForm.workshops.$error.required">Target
+	    Required</span>
+          <span ng-show="myForm.workshops.$error.number">Target Required</span>
+	</span>
+      </p>
+      <p>Target Experiments<br>
+	<input type="number" name="expts" min="0" ng-model="expts"  class="form-control"
+               placeholder="No of Experiments" required>
+	<span style="color:red" ng-show="myForm.expts.$dirty && myForm.expts.$invalid">
+	  <span ng-show="myForm.expts.$error.number">Target Required</span>
+	</span>
+      </p>
+      <p>Target Participants<br>
+	<input type="number" name="parti" min="0" ng-model="parti"  class="form-control"
+               placeholder="No of participants" required>
+	<span style="color:red" ng-show="myForm.parti.$dirty && myForm.parti.$invalid">
+	  <span ng-show="myForm.parti.$error.number">Target Required</span>
+	</span>
+      </p>
+      <p>
+	<input type="submit" value="submit" class="btn btn-primary"  ng-disabled="myForm.$invalid">
+	<a href="#/manage-nc">Cancel</a>
+      </p>
+    </form>
+  </div>
+  <div class="col-md-4"></div>
+</div>

@@ -1,0 +1,35 @@
+<div ng-controller="ws_details">
+  <h3>Total Workshops :  {{ workshops.length }}</h3><br>
+  <div align='center' ng-show="nloading"><img id="mySpinner" src="/static/img/default.gif"></div>
+  <div ng-hide="nloading">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>S.No</th>
+	  <th>Workshop Location</th>
+	  <th>Version</th>
+	  <th>Workshop Date</th>
+	  <th>Participants Attended</th>	  
+	  <th>Reports</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="workshop in workshops | orderBy : '-date'" ng-click="ViewReports(workshop.id)">
+          <td>{{ $index+1 }}</td>
+	  <td>{{ workshop.location }}</td>
+	  <td>{{ workshop.version }}</td>
+	  <td>{{ workshop.date }}</td>
+	  <td>{{ workshop.participants_attended }}</td>	    
+	  
+	  <!--<td ng-repeat="report in workshop.reports">
+	      <a href="{{report.path}}"><button class="btn-primary">{{report.name}}</button></a>
+	  </td>-->
+	  <td ng-if="workshop.reports.length == 0">Not Available</td>	    
+	  <td ng-if="workshop.reports.length > 0 && workshop.version == 'online'"><a href="/ws_details#/ws-list/{{workshop.id}}"><button class="btn-primary">View</button></a></td>
+	  <td ng-if="workshop.reports.length > 0 && workshop.version == 'offline'"><a href="/ws_details_offline#/ws-list/{{workshop.id}}"><button class="btn-primary">View</button></a></td>
+        </tr>
+    </table>
+  </div>
+</div>
+
+

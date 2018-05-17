@@ -1,0 +1,90 @@
+<div class="col-md-6">
+  <form method="post" id="upload-file" name="myForm" action="" style="margin-top:30px"  enctype="multipart/form-data">
+    <span class="error"></span>
+    <input class="form-control" type="text" name="name" id="name"
+           ng-model="name" placeholder="Enter the type of the file" required/>
+    <br>
+    <input type="file" name="file" id="file" ng-model="file" required multiple/><br>
+    <button type="button" id="upload-file-btn" class="btn btn-primary">Upload</button>
+  </form>
+    <br><br>
+    <div id="wait-status"></div>
+    <br>
+    <div id="upload-status"></div>
+    <b id="total-files"></b>
+    <div id="not-upload-status"></div>
+    <b id="not-upload-file"></b>
+
+</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+    var validFile = function(fileList){
+       for (var i=0; i < fileList.files.length; i++ ){           
+           var re = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf|\.txt|\.csv|\.doc|\.docx)$/i;
+           if(!re.exec(fileList.files[i].name)){
+             return false;
+           }
+           
+       }
+       return true;                  
+   }; 
+   $(function() {
+   $('#upload-file-btn').click(function() {
+        var fileups = document.getElementById('file');
+	var name = $('#name').val();
+        console.log(number);
+        console.log(name);
+        if (name == ""){
+            $('.error').html("Please enter the type of file!") ;
+        }else if (fileups.files.length == 0){
+            $('.error').html("Please select a file!<br>") ;
+        }else if (!validFile(fileups)){                 
+            $('.error').html("Allowed file formats are: <br> [txt, pdf, png, jpg, jpeg, gif, csv, doc, docx]<br>") ;
+        }else{
+                         data = {name: name, user: {id : number}};
+                         $('#wait-status').html("<b> Please Wait...</b>");
+        for (var i = 0; i < fileups.files.length; i++){console.log(fileups.files[i].name);
+        var jqxhr = $.ajax({
+            url: '/reference_documents',
+            type: 'POST',
+            global: false,
+            async:false,
+            contentType: 'application/json',
+                            data: JSON.stringify({name: name+"_"+fileups.files[i].name, user: {id : number}}),
+                            headers: {'email' : window.email, 'key' : window.key },
+            success: function (data){
+                return data ;
+            },error : function (data){alert("Error in making request to /refrence_documents");}
+        }).responseText;
+
+        var documentId = JSON.parse(jqxhr).id;
+        console.log(documentId);
+        var form_data = new FormData();
+       
+        form_data.append('file', fileups.files[i], fileups.files[i].name);
+        var url = '/upload_reference_documents/' + documentId ;
+        var percentage = Math.round(i*(100/Number(fileups.files.length)));
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData: false,
+            async: false,
+            success: function(data) {$('#upload-status').html("<b> Uploading Files</b>");
+                            $('#total-files').html((i+1) + "<b>) </b>" + fileups.files[i].name);
+                            if(i == (fileups.files.length-1)){window.history.back();}
+            },
+            error: function(){$('#not-upload-status').html("<b> Files Not Uploaded : </b>");
+                            $('#not-upload-file').append("<font color='red'>(" + (i+1) + ") </font>" + fileups.files[i].name + "<br>");
+                            }
+                
+       });
+     }
+ 
+      }
+     });
+});
+ </script>
+

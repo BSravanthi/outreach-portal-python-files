@@ -1,0 +1,8 @@
+<ul>
+  {% for document in documents%}
+  {% if document.path %}
+  <li> {{ document.path }}</li>
+  {% endif %}
+  {% endfor %}
+</ul>
+	

@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-9"><h2>Nodal Coordinator Details</h2></div>
+  <div class="col-md-3">
+    <a href="#/add-nc" role="button" class="btn btn-success btn-large">Add Nodal Coordinator</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+	<tr>
+          <th>Name</th>
+	  <th>Email</th>
+	  <th>Created On</th>
+	  <th>Last Active</th>
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="coordinator in coordinators">
+          <td>{{ coordinator.name }}</td>
+          <td>{{ coordinator.email }}</td>
+          <td id="number">{{ coordinator.created }}</td>
+          <td id="number">{{ coordinator.last_active }}</td>
+          <!--<td>{{ coordinator.centre.location }}</td>-->
+          <td><a href="#/edit-nc/{{ coordinator.nc_user_id }}" class="btn btn-primary">Edit</a></td>
+          <td><a class="btn btn-primary" ng-click="del(coordinator.nc_details_id, coordinator.id)">Delete</a></td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+

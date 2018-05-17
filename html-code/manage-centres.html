@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-9"><h2>Nodal Centres  Details</h2></div>
+  <div class="col-md-3">
+    <a href="#/add-centre" role="button" class="btn btn-success btn-large">Add
+      Nodal Centre</a>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+	  <th>Location</th>
+          <th>Pincode</th>
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="centre in centres">
+          <td>{{ centre.name }}</td>
+          <td>{{ centre.location }}</td>
+          <td>{{ centre.pincode }}</td>
+          <td><a href="#/edit-centre/{{centre.id}}" class="btn btn-primary">Edit</a></td>
+          <td><a class="btn btn-primary" ng-click="del_centre(centre.id)">Delete</a></td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- home.html
+    <div class="jumbotron text-center" >
+        <h1>Home Page</h1>
+        
+          <table border="1">
+            <th align="center"></th>
+            <tr>
+               <td>Name</td>
+              <td>Email</td>
+               <td>Edit</td>
+               <td>Delete</td>
+              
+             
+            </tr>
+           
+            <tr ng-repeat="oc in message">
+              
+              <td>{{ oc.name }}</td>
+              <td>{{ oc.email }}</td>
+              <td><a href="#/editoc/{{oc.id}}">Edit</a></td>
+              <td><a href="#/deloc/{{oc.id}}">Delete</a></td>
+              
+             
+            </tr>
+           
+          </table>
+        
+    </div>
+-->

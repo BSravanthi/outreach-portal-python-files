@@ -1,0 +1,165 @@
+<div>
+  <h1> Upload Photos </h1>
+  <form method="post" id="upload-file" name="myForm" action=""  style="margin-top:30px"  enctype="multipart/form-data">
+    <span class="error"></span>
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+
+	</tr>
+      </thead>
+      <tbody>
+	<span id="photo-count" style="visibility: hidden">{{photos.length}}</span>
+	<tr ng-repeat="doc in photos">
+          <td ng-if="doc.path">{{ doc.name }}</td>
+          <td ng-if="doc.path"><a href="{{ doc.path }}" class="btn btn-primary" target="_blank" >View</a></td>
+          <td ng-if="doc.path"><a ng-click="delreport(doc.id)" class="btn btn-primary">Delete</a></td>
+        </tr>
+      </tbody>
+    </table><br>
+    <input type="file" name="file" id="photo-file" required multiple/><br>
+    <br><br>
+    <h1> Upload Attendance Sheets </h1>
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+
+	</tr>
+      </thead>
+      <tbody>
+	<span id="attendance-count" style="visibility: hidden">{{attendance.length}}</span>
+	<tr ng-repeat="doc in attendance">
+          <td ng-if="doc.path">{{ doc.name }}</td>
+          <td ng-if="doc.path"><a href="{{ doc.path }}" class="btn btn-primary" target="_blank">View</a></td>
+          <td ng-if="doc.path"><a ng-click="delreport(doc.id)" class="btn btn-primary">Delete</a></td>
+	</tr>
+      </tbody>
+    </table><br>
+    <input type="file" name="file" id="attendance-file" required multiple/><br>
+    <br><br>
+   <h1> Upload College Reports </h1>
+
+   <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+
+	</tr>
+      </thead>
+      <tbody>
+	<span id="report-count" style="visibility: hidden">{{reports.length}}</span>
+	<tr ng-repeat="doc in reports">
+          <td ng-if="doc.path">{{ doc.name }}</td>
+          <td ng-if="doc.path"><a href="{{ doc.path }}" class="btn btn-primary" target="_blank">View</a></td>
+          <td ng-if="doc.path"><a ng-click="delreport(doc.id)" class="btn btn-primary">Delete</a></td>
+	</tr>
+      </tbody>
+   </table><br>
+   <input type="file" name="file" id="reports-file" required multiple/><br>
+   <button type="button" id="upload-reports" class="btn btn-primary">Upload</button>
+  </form>
+  <br>
+  <div id="wait-status"></div>
+  <br>
+  <div id="upload-status"></div>
+  <b id="total-files"></b>
+  <div id="not-upload-status"></div>
+  <b id="not-upload-file"></b>
+  <br><br>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+    var validFile = function(fileList){
+       for (var i=0; i < fileList.files.length; i++ ){           
+           var re = /(\.jpg|\.jpeg|\.png|\.gif|\.pdf|\.txt|\.csv|\.doc|\.docx)$/i;
+           if(!re.exec(fileList.files[i].name)){
+             return false;
+           }
+           
+       }
+       return true;                  
+   };  
+   $(function() {
+   $('#upload-reports').click(function() {
+        var workshop_id = location.href.split("/").pop();
+	console.log(number);
+	var photoCount = document.getElementById('photo-count').textContent;
+	var attendanceCount = document.getElementById('attendance-count').textContent;
+	var reportCount = document.getElementById('report-count').textContent;		 
+        var fileups = {'Photos':document.getElementById('photo-file'),
+                   'Attendance':document.getElementById('attendance-file'),
+                   'Reports': document.getElementById('reports-file')};
+        
+			 if(fileups['Photos'].files.length + fileups['Attendance'].files.length + fileups['Reports'].files.length == 0){
+			 
+			 $('.error').html("Select atleast one file to be uploaded!<br>");
+			 }else if(fileups['Photos'].files.length + Number(photoCount) == 0 || fileups['Attendance'].files.length + Number(attendanceCount) == 0 || fileups['Reports'].files.length + Number(reportCount) == 0){
+	    $('.error').html("Upload atleast one file per section!<br>");
+            }else if(!validFile(fileups['Photos']) || !validFile(fileups['Attendance']) || !validFile(fileups['Reports'])){
+	    $('.error').html("Allowed file formats are: <br> [txt, pdf, png, jpg, jpeg, gif, csv, doc, docx]<br>");
+            }else{
+        
+   
+        for (var key in fileups){
+                         data = {name: key, workshop: {id : workshop_id }};
+                         $('#wait-status').html("<b> Please Wait...</b>");
+        for (var i = 0; i < fileups[key].files.length; i++){console.log(fileups[key].files[i].name);
+        var jqxhr = $.ajax({
+            url: '/workshop_reports',
+            type: 'POST',
+            global: false,
+            async:false,
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (data){
+                return data ;
+            },headers: {'email' : window.email, 'key' : window.key },
+        }).responseText;
+
+        var documentId = JSON.parse(jqxhr).id;
+        console.log(documentId);
+        var form_data = new FormData();
+       
+        form_data.append('file', fileups[key].files[i], fileups[key].files[i].name);
+        var url = '/upload_workshop_reports/' + documentId ;
+        var count = 0;
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData: false,
+            async: false,
+            success: function(data) {$('#upload-status').html("<b> Uploading " + key + " File  </b>");
+                            $('#total-files').html("<b>" + fileups[key].files[i].name + "</b>");
+                            var url = '/workshops/'+workshop_id;                        
+                            $.ajax({
+                            url: url,
+                            type: 'PUT',
+                            async:false,
+                            contentType: 'application/json',
+                            data: JSON.stringify({status: {id: 2}}),headers: {'email' : window.email, 'key' : window.key },
+                            success: function (data){count = i; i = i+count;console.log(i+1);
+                            console.log('Status: Pending for Approval');
+                            }
+                            });                    
+	                    
+                            console.log('Success');
+                            },
+                            error: function(){$('#not-upload-status').html("<b> Files Not Uploaded  </b>");
+                            $('#not-upload-file').append("<font color='red'>(" + (i+1) + ") </font>" + fileups[key].files[i].name + "<br>");}
+                            });
+                            }
+                            }
+
+                            
+    
+      }
+                            $('#total-files').html("<b> Successfully uploaded all the files  </b>");
+                            $('#wait-status').html("<b> Done </b>");
+    });                        
+});
+ </script>
+</div>

@@ -1,0 +1,40 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#manage-workshops">Upcoming Workshops</a></li>
+  <li><a data-toggle="tab" href="#manage-workshops/pending-action">Pending Action Workshops</a></li>
+  <li><a data-toggle="tab" href="#manage-workshops/workshop-history">Workshop History</a></li>
+</ul>
+<div class="row" style="margin-top: 30px">
+  <div class="col-md-10"></div>
+  <div class="col-md-2">
+    <a href="#/add-workshop" role="button" class="btn btn-success btn-large">ADD WORKSHOP</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+	  <th>Version</th>
+	  <th>Location</th>
+          <th>Participants</th>
+	  <th>Date</th>
+          <th>Status</th>
+
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="workshop in upcoming">
+          <td>{{ workshop.name }}</td>
+	  <td>{{ workshop.version }}</td>
+          <td>{{ workshop.location }}</td>
+          <td>{{ workshop.no_of_participants_expected }}</td>
+          <td>{{ workshop.date }}</td>
+          <td>{{ workshop.status.name }}</td>
+          <td><button class="btn btn-primary" ng-click="cancel(workshop.id)">Cancel</button></td>
+          <td><a href="#/edit-workshop/{{workshop.id}}" class="btn btn-primary">Edit</a></td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+</div>

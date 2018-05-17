@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-md-10"><h2>Workshop Documents</h2></div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+   <h3> Photos </h3>
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="doc in photos">
+          <td ng-if="doc.path">{{ doc.name }}</td>
+          <td ng-if="doc.path"><a href="{{ doc.path }}" class="btn btn-primary" target="_blank">View</a></td>
+	</tr>
+      </tbody>
+    </table><br>
+    <h3> Attendance </h3>
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="doc in attendance">
+          <td ng-if="doc.path">{{ doc.name }}</td>
+          <td ng-if="doc.path"><a href="{{ doc.path }}" class="btn btn-primary" target="_blank">View</a></td>
+	</tr>
+      </tbody>
+    </table><br>
+    <h3> College Reports </h3>
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="doc in reports">
+          <td ng-if="doc.path">{{ doc.name }}</td>
+          <td ng-if="doc.path"><a href="{{ doc.path }}" class="btn btn-primary" target="_blank">View</a></td>
+	</tr>
+      </tbody>
+    </table><br>
+    
+    <h2>Workshop Details</h2>
+    <table class="table table-hover">
+      <tr>
+	<td>Name</td>
+	<td>{{ data.name }}</td>
+      </tr>
+      <tr>
+	<td>Version</td>
+	<td>{{ data.version }}</td>
+      </tr>
+      <tr>
+	<td>Created</td>
+	<td>{{ data.created }}</td>
+      </tr>
+      <tr>
+	<td>Date</td>
+	<td>{{ data.date }}</td>
+      </tr>
+      <tr>
+	<td>Duration of sessions</td>
+	<td>{{ data.duration_of_sessions }}</td>
+      </tr>
+      <tr>
+	<td>Usage (Experiments Conducted)</td>
+	<td>{{ data.experiments_conducted }}</td>
+      </tr>
+      <tr>
+	<td>Labs Planned</td>
+	<td>{{ data.labs_planned }}</td>
+      </tr>
+      <tr>
+	<td>Location</td>
+	<td>{{ data.location }}</td>
+      </tr>
+      <tr>
+	<td>Participants Expected</td>
+	<td>{{ data.no_of_participants_expected }}</td>
+      </tr>
+      <tr>
+	<td>Sessions</td>
+	<td>{{ data.no_of_sessions }}</td>
+      </tr>
+      <tr>
+	<td>Participants Attended</td>
+	<td>{{ data.participants_attended }}</td>
+      </tr>
+      <tr>
+	<td>Participating Institutes</td>
+	<td>{{ data.participating_institutes }}</td>
+      </tr>
+      <tr>
+	<td>Reasons for disapproval (if any)</td>
+	<td>{{ data.not_approval_reason }}</td>
+      </tr>
+       <tr>
+	<td>Status</td>
+	<td>{{ data.status.name }}</td>
+      </tr>
+    </table><br><br>
+  </div>
+</div>
+
+
+

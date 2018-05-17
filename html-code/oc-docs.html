@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-10"><h2>My Documents</h2></div>
+  <div class="col-md-2">
+    <a href="#/add-doc" role="button" class="btn btn-success btn-large">ADD DOCUMENT</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+
+
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="document in documents">
+          <td ng-if="document.path">{{ document.name }}</td>
+          <td ng-if="document.path"><a href="{{ document.path }}" class="btn btn-primary" target="_blank" >View</a></td>
+          <td ng-if="document.path"><a ng-click="deldoc(document.id)" class="btn btn-primary">Delete</a></td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10"><h2>Admin Documents</h2></div>
+  <div class="col-md-2"></div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="document in admindocs">
+          <td ng-if="document.path">{{ document.name }}</td>
+          <td ng-if="document.path"><a href="{{ document.path }}" class="btn btn-primary" target="_blank" >View</a></td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+</div>

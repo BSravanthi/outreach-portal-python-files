@@ -1,0 +1,38 @@
+<ul class="nav nav-tabs">
+  <li><a data-toggle="tab" href="#manage-workshops">Upcoming Workshops</a></li>
+  <li><a data-toggle="tab" href="#manage-workshops/pending-action">Pending Action Workshops</a></li>
+  <li  class="active"><a data-toggle="tab" href="#manage-workshops/workshop-history">Workshop History</a></li>
+</ul>
+<div class="row" style="margin-top: 30px">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+	  <th>Version</th>
+	  <th>Location</th>
+          <th>Participants</th>
+	  <th>Date</th>
+          <th>Status</th>
+	  <th>Usage</th>
+	 
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="workshop in history">
+          <td>{{ workshop.name }}</td>
+	  <td>{{ workshop.version }}</td>
+          <td>{{ workshop.location }}</td>
+          <td>{{ workshop.participants_attended }}</td>
+          <td>{{ workshop.date }}</td>
+          <td>{{ workshop.status.name }}</td>
+	  <td>{{ workshop.experiments_conducted }}</td>
+	  <td><a href="#view-reports/{{workshop.id}}" class="btn btn-primary">View Reports</a><td>
+          <td><a href="#/edit-workshop/{{workshop.id}}" class="btn btn-primary">Edit</a></td>
+          <td><a href="#/upload-reports/{{workshop.id}}" class="btn btn-primary">Upload Reports</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

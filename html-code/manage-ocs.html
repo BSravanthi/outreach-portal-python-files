@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-9"><h2>Outreach Coordinators Details</h2></div>
+  <div class="col-md-3">
+    <a href="#/add-oc" role="button" class="btn btn-success btn-large">Add Outreach Coordinator</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+	<tr>
+          <th>S.NO</th>
+	  <th>Name</th>
+	  <th>Email</th>
+          <th>Institute Name</th>
+	  <th>Last Active</th>
+	  <th>Created On</th>
+
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="oc in oc_users">
+          <td id="number">{{ $index+1 }}</td>
+          <td>{{ oc.name }}</td>
+          <td>{{ oc.email }}</td>
+          <td>{{ oc.institute_name }}</td>
+          <td id="number">{{ oc.last_active }}</td>
+          <td id="number">{{ oc.created }}</td>
+          <td><a href="#/edit-oc/{{oc.id}}" class="btn btn-primary">Edit</a></td>
+          <td><a class="btn btn-primary" ng-click="delete_oc(oc.id)">Delete</a></td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="box" onclick="location.href='#/workshop-list'">Workshops Run
+      <br/><br/>
+      <span class="number" ng-show="total_workshops">{{ total_workshops }}</span>
+      <span class="number" ng-hide="total_workshops"><img id="mySpinner" src="/static/img/default1.gif"></span>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="box" onclick="location.href='#/oc-users-list'">Outreach Coordinators
+      <br/><br/>
+      <span class="number" ng-show="totaloc">{{ totaloc }}</span>
+      <span class="number" ng-hide="totaloc"><img id="mySpinner" src="/static/img/default1.gif"></span>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="box" onclick="location.href='#/nc-users-list'">Nodal Coordinators
+      <br/><br/>
+      <span class="number" ng-show="totalnc">{{ totalnc }}</span>
+      <span class="number" ng-hide="totalnc"><img id="mySpinner" src="/static/img/default1.gif"></span>
+    </div>
+  </div>
+  <div class="col-md-3" onclick="location.href='#/usage'">
+    <div class="box">Usage
+      <br/><br/>
+      <span class="number" ng-show="total_usage">{{ total_usage }}</span>
+      <span class="number" ng-hide="total_usage"><img id="mySpinner" src="/static/img/default1.gif"></span>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var dashboard = function(){
+  $('a[href="#admin-dashboard"]').click();
+  }
+</script>

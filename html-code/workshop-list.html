@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-10"><h2>Workshop Details</h2></div>
+  <div class="col-md-2">
+    <a onclick="history.back();" role="button" class="btn btn-success btn-large">Back</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-stripped">
+	<thead>
+	  <tr>
+            <th>S.NO</th>
+	    <th>Workshop Name</th>
+	    <th>Workshop Version</th>
+	    <th>Location</th>
+	    <th>Date</th>
+            <th>Participating Institutes</th>
+	    <th>Participants Attended</th>
+            <th>Labs Planned</th>
+            <th>Total Sessions</th>
+            <th>Duration of Session (In hrs)</th>
+            <th>Experiments Conducted</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr ng-repeat="workshop in workshops | orderBy : 'participating_institutes'">
+            <td>{{ $index+1 }}</td>
+            <td>{{ workshop.name }}</td>
+	    <td>{{ workshop.version }}</td>
+            <td>{{ workshop.location }}</td>
+            <td>{{ workshop.date }}</td>
+            <td>{{ workshop.participating_institutes }}</td>
+            <td>{{ workshop.participants_attended }}</td>
+            <td>{{ workshop.labs_planned }}</td>
+            <td>{{ workshop.no_of_sessions }}</td>
+            <td>{{ workshop.duration_of_sessions }}</td>
+            <td>{{ workshop.experiments_conducted }}</td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+

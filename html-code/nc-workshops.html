@@ -1,0 +1,33 @@
+<ul class="nav nav-tabs">
+  <li><a data-toggle="tab" href="#oc-manage-workshops">My Workshops</a></li>
+  <li class="active"><a data-toggle="tab" href="#oc-manage-workshops/nc-workshops">Nodal Coordinator Workshops</a></li>
+  <li><a data-toggle="tab" href="#oc-manage-workshops/oc-workshop-history">Workshop History</a></li>
+</ul>
+<div class="row" style="margin-top:30px">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+	<tr>
+	  <th>Name</th>
+	  <th>Version</th>
+	  <th>Location</th>
+          <th>Reasons for Rejection</th>
+	  <th>Date</th>
+          <th>Status</th>
+ 
+	</tr>
+      </thead>
+      <tbody>
+	<tr ng-repeat="workshop in workshops">
+          <td>{{ workshop.name }}</td>
+	  <td>{{ workshop.version }}</td>
+          <td>{{ workshop.location }}</td>
+          <td>{{ workshop.not_approval_reason }}</td>
+          <td>{{ workshop.date }}</td>
+          <td>{{ workshop.status.name }}</td>
+          <td><a href="#review-reports/{{workshop.id}}" class="btn btn-primary">Review Reports</a><td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

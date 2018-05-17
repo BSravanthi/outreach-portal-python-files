@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <h2>Add Nodal Coordinator</h2>
+    <span class="error"> {{ status }}</span>
+    <form name="myForm" novalidate ng-submit="submit(myForm.$valid)">
+      <p>Coordinator Name:<br>
+	<input type="text" name="user" ng-model="name"
+               ng-pattern="/^[a-zA-Z\s]*$/" class="form-control"  placeholder="Coordinator Name" required>
+	<span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+	  <span ng-show="myForm.user.$error.required">Name is
+	    required.</span>
+          <span ng-show="myForm.user.$error.pattern">Enter valid name</span>
+
+	</span>
+      </p>
+      <p>Nodal Centre Name:<br>
+        <select class="form-control" name="centre" ng-model="ncentre_id"
+                ng-options="centre as (centre.name + ',&nbsp; ' + centre.location) for centre in ncentres" required>
+         </select>
+        <span style="color:red" ng-show="myForm.centre.$dirty && myForm.centre.$invalid">
+           <span ng-show="!ncentre_id">Sorry, the field is empty!</span>
+	   <span ng-show="myForm.centre.$error.required">Centre is required.</span>
+	   <span ng-show="myForm.centre.$error.">Please choose the centre name</span>
+	 </span>
+      </p>
+      <p>Email:<br>
+	<input type="text" name="email" ng-model="email"
+               ng-pattern="/^[A-Za-z]+[A-Za-z0-9._-]+@[A-Za-z]+\.[A-Za-z.]{2,20}$/" class="form-control"  placeholder="example@ex.com" required>
+	<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+	  <span ng-show="myForm.email.$error.required">Email-id is
+	    required.</span>
+          <span ng-show="myForm.email.$error.pattern">Enter valid email-id</span>
+	</span>
+      </p>
+
+      <!--<p>Institute Name:<br>
+	<input type="text" name="inst_name" ng-model="inst_name"  class="form-control"  placeholder="Institute Name" required>
+	<span style="color:red" ng-show="myForm.inst_name.$dirty && myForm.inst_name.$invalid">
+	  <span ng-show="myForm.inst_name.$error.required">Institute name is required.</span>
+	</span>
+      </p>
+      
+	  <p>Phone No:<br>
+	<input type="number" name="phone"  ng-pattern="/^[(]{0,1}[0-9]{3}[)\.\-
+               ]{0,1}[0-9]{3}[\.\-
+                                                       ]{0,1}[0-9]{4}$/"
+               ng-model="phone" ng-minlength="10" ng-maxlength="10" class="form-control"
+               placeholder="Mobile Number" required>
+	<span style="color:red" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+	  <span ng-show="myForm.phone.$error.required">Phone number is
+	    required.</span>
+          <span ng-show="myForm.phone.$error.minlength">Enter valid phone number</span>
+          <span ng-show="myForm.phone.$error.maxlength">Enter valid phone number</span>
+          <span ng-show="myForm.phone.$error.number">Phone number is required.</span>
+	</span>
+      </p>
+          -->
+      <p>Target Workshops<br>
+	<input type="number" ng-mouseover="targetWorkshops('over')"
+               ng-mouseleave="targetWorkshops('unover')" name="workshops" min="0" ng-model="workshops"  class="form-control"
+               placeholder="No of workshops" required>
+	<span style="color:red" ng-show="myForm.workshops.$dirty && myForm.workshops.$invalid">
+	  <span ng-show="myForm.workshops.$error.required">Target Workshops
+	    Required</span>
+          <span ng-show="myForm.workshops.$error.number">Please enter the valid workshops number</span>
+	</span>
+      </p>{{ info }}
+      <p>Target Experiments<br>
+	<input type="number" ng-mouseover="targetExperiments('over')" ng-mouseleave="targetExperiments('unover')" name="expts" min="0" ng-model="expts"  class="form-control"
+               placeholder="No of Experiments" required>
+        <span style="color:red" ng-show="myForm.expts.$dirty && myForm.expts.$invalid">
+          <span style="color:red" ng-show="myForm.expts.$error.required">Target
+          Experiments Required</span>
+	  <span ng-show="myForm.expts.$error.number">Please enter the valid experiments number</span>
+	</span>
+      </p>
+       {{ info1 }}
+      <p>Target Participants<br>
+	<input type="number" ng-mouseover="targetParticipants('over')" ng-mouseleave="targetParticipants('unover')" name="parti" min="0" ng-model="parti"  class="form-control"
+               placeholder="No of participants" required>
+        <span style="color:red" ng-show="myForm.parti.$dirty && myForm.parti.$invalid">
+        <span ng-show="myForm.parti.$error.required">Target
+          Participants Required</span>
+	<span ng-show="myForm.parti.$error.number">Please enter the valid participants number</span>
+	</span>
+      </p>
+      {{ info2 }}
+      <p>
+	<input type="submit" value="submit" class="btn btn-primary"  ng-disabled="myForm.$invalid">
+	<a href="#/manage-nc">Cancel</a>
+      </p>  
+    </form>
+  </div>
+  <div class="col-md-4"></div>
+</div>

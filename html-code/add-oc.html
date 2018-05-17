@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <h2>Add Outreach Coordinator</h2>
+    <span class="error"> {{ status }}</span>
+    <form name="myForm" novalidate ng-submit="add_oc(myForm.$valid)">
+      <p>Name:<br>
+	<input type="text" name="user" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="name"  class="form-control"  placeholder="User Name" required>
+	<span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+	  <span ng-show="myForm.user.$error.required">Name is
+	    required.</span>
+          <span ng-show="myForm.user.$error.pattern">Enter valid name</span>
+	</span>
+      </p>
+      <p>Email:<br>
+	<input type="text" name="email" ng-model="email"
+               ng-pattern="/^[A-Za-z]+[A-Za-z0-9._-]+@[A-Za-z]+\.[A-Za-z.]{2,20}$/" class="form-control"  placeholder="example@ex.com" required>
+	<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+	  <span ng-show="myForm.email.$error.required">Email-id is
+	    required.</span>
+          <span ng-show="myForm.email.$error.pattern">Enter valid email-id</span>
+	</span>
+      </p>
+      <p>Institute Name:<br>
+	<input type="text" name="inst_name" ng-model="inst_name"  class="form-control"  placeholder="Institute Name" required>
+	<span style="color:red" ng-show="myForm.inst_name.$dirty && myForm.inst_name.$invalid">
+	  <span ng-show="myForm.inst_name.$error.required">Institute name is required.</span>
+	</span>
+      </p>
+      <p>
+	<input type="submit" value="submit" class="btn btn-primary"  ng-disabled="myForm.$invalid">
+	<a href="#/manage-oc">Cancel</a>
+      </p>
+    </form>
+  </div>
+  <div class="col-md-4"></div>
+</div>

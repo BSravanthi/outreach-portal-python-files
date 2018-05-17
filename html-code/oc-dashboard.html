@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="box1" onclick="location.href='#/oc-manage-workshops/oc-workshop-history'">
+      Workshops<br/><br/>
+      {{ workshops + ocworkshops }}
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="box1" onclick="location.href='#/oc-manage-workshops/oc-workshop-history'">
+      Usage<br/><br/>
+      {{ experiments + ocexperiments }}
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="box1" onclick="location.href='#/oc-manage-workshops/oc-workshop-history'">
+      Participants
+      <br/><br/>
+      {{ participants + ocparticipants }}
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="box1" onclick="location.href='#/manage-centres'">
+      Nodal Centers<br/><br/>
+      {{ ncentres }}
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var dashboard = function(){
+  $('a[href="#oc-dashboard"]').click();
+  }
+</script>

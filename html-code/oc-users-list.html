@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-10"><h2>Outreach Coordinators Details</h2></div>
+  <div class="col-md-2">
+    <a onclick="history.back();" role="button" class="btn btn-success btn-large">Back</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-stripped">
+	<thead>
+	  <tr>
+            <th>S.NO</th>
+	    <th>Name</th>
+	    <th>Email</th>
+            <th>Last Active</th>
+	    <th>Institute Name</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr ng-repeat="oc in oc_users">
+            <td>{{ $index+1 }}</td>
+            <td>{{ oc.name }}</td>
+            <td>{{ oc.email }}</td>
+            <td>{{ oc.last_active }}</td>
+            <td>{{ oc.institute_name }}</td>
+	  </tr>
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
