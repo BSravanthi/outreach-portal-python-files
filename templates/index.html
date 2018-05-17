@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block content %}
+{% raw %}
+<div ng-app="outreachApp">
+   <div class="analytics-band">
+    <div class="container">
+      <div class="row" ng-controller="admin-ctrl">
+	<div class="col-md-3 analytics upcoming" ng-controller="map-ctrl" onclick="scrollWin()">
+          UPCOMING WORKSHOPS<br>
+          <span class="number">{{ upcoming_workshops.length }}</span>
+	  <span class="number" ng-show="upcoming_loading"><img id="mySpinner" src="/static/img/default1.gif"></span>
+        </div>
+	<div class="col-md-3 analytics labs-taken">
+          PARTICIPANTS ATTENDED<br>
+          <span class="number">{{ total_participants }}</span>
+	  <span class="number" ng-show="load_analytics"><img id="mySpinner" src="/static/img/default1.gif"></span>
+        </div>
+	<div class="col-md-2 analytics nodal-centers" ng-click="showNcentres()">
+          NODAL CENTRES<br>
+          <span class="number">{{ nodal_centres }}</span>
+	  <span class="number" ng-show="nloading"><img id="mySpinner" src="/static/img/default1.gif"></span>
+        </div>
+        <div class="col-md-2 analytics workshops-run" ng-click="showWorkshops()">
+          WORKSHOPS RUN<br>
+	  <span class="number" ng-show="load_analytics"><img id="mySpinner" src="/static/img/default1.gif"></span>
+          <span class="number">{{ total_workshops }}</span>
+	</div>
+        <div class="col-md-2 analytics usage" ng-click="showUsage()">
+          USAGE<br>
+	  <span class="number" ng-show="load_analytics"><img id="mySpinner" src="/static/img/default1.gif"></span>
+          <span class="number">{{ total_usage }}</span>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div ng-controller="map-ctrl">
+      <div class="section-one">
+        <div class="row">
+	  <div class="col-md-12">
+            <div style="height: 800px;" id="map">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="upcoming_workshops.length !=0">
+        <h3>Upcoming Workshops</h3>
+        <table class="table table-hover">
+          <thead>
+	    <tr>
+	      <th>S.No</th>
+	      <th>Name</th>
+	      <th>Date</th>
+	      <th>Location</th>
+              <th>Participating Institutes</th>
+            </tr>
+	  </thead>
+	  <tbody>
+	    <tr ng-repeat="workshop in upcoming_workshops">
+	      <td>{{ $index+1 }}</td>
+	      <td>{{ workshop.name }}</td>
+              <td>{{ workshop.date }}</td>
+              <td>{{ workshop.location }}</td>
+              <td>{{ workshop.participating_institutes }}</td>
+	    </tr>
+	  </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endraw %}
+<script type="text/javascript">
+  function scrollWin() {
+  window.scrollBy(0, 900);
+  }
+</script> 
+{% endblock %}
+  
+  

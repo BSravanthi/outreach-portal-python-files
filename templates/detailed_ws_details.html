@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+<ul>
+  {{ data }}
+</ul>
+<!--
+{% raw %}
+<div ng-app="outreachApp">
+  <div class="container">
+    <div ng-controller="ws_details">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>S.No</th>
+	    <th>Path</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="report in ws_reports">
+          <tr>
+            <td>{{ $index+1 }}</td>
+	    <td>{{ report.path }}</td>
+	    <td ng-if="workshop.reports.length == 0">Not Available</td>	    
+	    <td ng-if="workshop.reports.length > 0"><a href="/ws_details/{{workshop.id}}"><button class="btn-primary">View</button></a></td>
+          </tr>
+	</tbody>
+      </table>
+  </div>
+</div>
+{% endraw %}
+<script> var data = {{ data.reports | tojson }};</script> 
+-->
+{% endblock %}

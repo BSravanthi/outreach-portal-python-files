@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+{% raw %}
+<!--
+<div ng-app="outreachApp">
+  <div class="container">
+    <div ng-controller="admin-ctrl">
+      <h3>Institute Wise Usage : </h3><br>
+      <div class="row">
+	<div class="col-md-12">
+	  <table class="table table-hover">
+	    <thead>
+	      <tr>
+		<th>Outreach Coordinator</th>
+		<th>Outrech Centre</th>
+		<th>Usage (in terms of total experiments performed)</th>
+	      </tr>
+	    </thead>
+	    <tbody ng-repeat="name in oc_usage | orderBy : '-usage'">
+              <tr ng-if="name.oc_centre!='VLEAD-IIITH'">
+		<td>{{ name.oc_name }}</td>
+		<td>{{ name.oc_centre }}</td>
+		<td>{{ name.usage }}</td>
+              </tr>
+	    </tbody>
+	  </table>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>-->
+<div ng-app="outreachApp">
+  <div class="container">
+    <div ng-controller="usage-ctrl">
+      
+      <h3>Institute wise Usage </h3><br>
+      <div align='center' ng-show="loading"><img id="mySpinner" src="/static/img/default.gif"></div>
+      <div class="row" ng-hide="loading">
+	<div class="col-md-12">
+	  <table class="table table-hover">
+	    <thead>
+	      <tr>
+		<th>S.NO</th>
+		<th>Institute Name</th>
+		<th>Total Nodal Centres</th>
+		<th>Workshops</th>
+		<th>Usage (In terms of total experiments conducted)</th>
+	      </tr>
+	    </thead>
+	    <tbody ng-repeat="(key, value) in usages | orderBy : '-value.usage'">
+              <tr  ng-if="key!='VLEAD-IIITH'">
+		<td>{{ $index+1 }}</td>
+		<td>{{ key }}</td>
+		<td>{{ value.nc_count }}</td>
+		<td>{{ value.workshops }}</td>
+		<td>{{ value.usage }}</td>
+              </tr>
+	    </tbody>
+	  </table>
+	</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endraw %}
+{% endblock %}
