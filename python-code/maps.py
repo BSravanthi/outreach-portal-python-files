@@ -1,0 +1,247 @@
+
+from db import *
+role = {'entity_class': Role,
+        'attributes': [
+            {'name': 'id',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'name',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'users',
+             'class': User,
+             'relationship': 'many'}
+            ]}
+
+user = {'entity_class': User,
+        'attributes': [
+            {'name': 'id',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'name',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'email',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'created',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'last_active',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'institute_name',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'role',
+             'class': Role,
+             'relationship': 'many'},
+            {'name': 'reference_documents',
+             'class': ReferenceDocument,
+             'relationship': 'many'},
+            {'name': 'workshops',
+             'class': Workshop,
+             'relationship': 'many'},
+            {'name': 'user_id',
+             'class': NodalCoordinatorDetail,
+             'relationship': 'one'},
+            {'name': 'created_by_user_id',
+             'class': NodalCoordinatorDetail,
+             'relationship': 'one'},
+            {'name': 'nodal_centres',
+             'class': NodalCentre,
+             'relationship': 'many'}
+        ]}
+
+reference_document = {'entity_class': ReferenceDocument,
+                     'attributes': [
+                         {'name': 'id',
+                          'class': None,
+                          'relationship': 'one'},
+                         {'name': 'name',
+                          'class': None,
+                          'relationship': 'one'},
+                         {'name': 'path',
+                          'class': None,
+                          'relationship': 'one'},
+                         {'name': 'user',
+                          'class': User,
+                          'relationship': 'one'}
+                     ]}
+
+status = {'entity_class': Status,
+        'attributes': [
+            {'name': 'id',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'name',
+             'class': None,
+             'relationship': 'one'},
+            {'name': 'workshops',
+             'class': Workshop,
+             'relationship': 'many'}
+            ]}
+
+workshop = {'entity_class': Workshop,
+            'attributes': [
+                {'name': 'id',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'name',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'location',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'user',
+                 'class': User,
+                 'relationship': 'one'},
+                {'name': 'participating_institutes',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'no_of_participants_expected',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'participants_attended',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'no_of_sessions',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'duration_of_sessions',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'disciplines',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'labs_planned',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'experiments_conducted',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'other_details',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'status',
+                 'class': Status,
+                 'relationship': 'one'},
+                {'name': 'cancellation_reason',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'not_approval_reason',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'gateway_ip',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'version',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'created',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'last_updated',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'date',
+                 'class': None,
+                 'relationship': 'one'},
+                {'name': 'workshop_reports',
+                 'class': WorkshopReport,
+                 'relationship': 'many'}
+            ]}
+
+
+nodal_coordinator_detail = {'entity_class': NodalCoordinatorDetail,
+                            'attributes': [
+                                {'name': 'id',
+                                 'class': None,
+                                 'relationship': 'one'},
+                                {'name': 'user',
+                                 'class': User,
+                                 'relationship': 'one'},
+                                {'name': 'created_by',
+                                 'class': User,
+                                 'relationship': 'one'},
+                                {'name': 'target_workshops',
+                                 'class': None,
+                                 'relationship': 'one'},
+                                {'name': 'target_participants',
+                                 'class': None,
+                                 'relationship': 'one'},
+                                {'name': 'target_experiments',
+                                 'class': None,
+                                 'relationship': 'one'},
+                                {'name': 'created',
+                                 'class': None,
+                                 'relationship': 'one'},
+                                {'name': 'last_updated',
+                                 'class': None,
+                                 'relationship': 'one'},
+                                {'name': 'nodal_centres',
+                                 'class': NodalCentre,
+                                 'relationship': 'many'}
+            ]}
+
+nodal_centre = {'entity_class': NodalCentre,
+                'attributes': [
+                    {'name': 'id',
+                     'class': None,
+                     'relationship': 'one'},
+                    {'name': 'created_by',
+                     'class': User,
+                     'relationship': 'one'},
+                    {'name': 'coordinators',
+                     'class': NodalCoordinatorDetail,
+                     'relationship': 'many'},
+                    {'name': 'name',
+                     'class': None,
+                     'relationship': 'one'},
+                    {'name': 'location',
+                     'class': None,
+                     'relationship': 'one'},
+                     {'name': 'pincode',
+                     'class': None,
+                     'relationship': 'one'},
+                     {'name': 'longitude',
+                     'class': None,
+                     'relationship': 'one'},
+                     {'name': 'lattitude',
+                     'class': None,
+                     'relationship': 'one'}
+            ]}
+
+workshop_report = {'entity_class': WorkshopReport,
+                  'attributes': [
+                      {'name': 'id',
+                       'class': None,
+                       'relationship': 'one'},
+                      {'name': 'path',
+                       'class': None,
+                       'relationship': 'one'},
+                      {'name': 'workshop',
+                       'class': Workshop,
+                       'relationship': 'one'}
+                  ]}
+
+roles = role
+users = user
+reference_documents = reference_document
+status=status
+workshops = workshop
+nodal_coordinator_details = nodal_coordinator_detail
+nodal_centres = nodal_centre
+workshop_reports = workshop_report
+
+entity_pairs = {
+    'roles': role,
+    'users': user,
+    'status':status,
+    'reference_documents': reference_document,
+    'workshops': workshop,
+    'nodal_coordinator_details': nodal_coordinator_detail,
+    'nodal_centres': nodal_centre,
+    'workshop_reports': workshop_report
+}
+                   
